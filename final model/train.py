@@ -93,6 +93,15 @@ if __name__ == '__main__':
     plt.plot(te_loss[4:], 'b')
     plt.show()
 
+    # calculate Mean Absolute Percent Error
+    err = 0.0
+    c = 0
+    for x, y in zip(pred, test_target):
+        err += (max(x.data[0], y.data[0]) - min(x.data[0], y.data[0]))/y.data[0]
+        c += 1
+    print(f'MPAE : {(err/c)*100}')
+
+
 
 """
 Output:
@@ -1381,7 +1390,9 @@ Test Loss: 7.5286776452355495
 Train loss: 4.419706365380346
 Test Loss: 7.513180906519193
 Mean Squared Error on Test Set: 7.553039852371561
+MPAE : 1.9981103907233326
 
 Process finished with exit code 0
+
 
 """
